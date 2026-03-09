@@ -2,7 +2,7 @@ import { useDraggable } from '@dnd-kit/core'
 import { motion } from 'framer-motion'
 import { format, parseISO } from 'date-fns'
 import type { Card as CardType } from '../../types'
-import { useCardStore } from '../../store/useCardStore'
+import { useCards } from '../../hooks/useCards'
 import { COLUMN_ORDER, USERS } from '../../constants/users'
 import { CardMoveArrows } from './CardMoveArrows'
 
@@ -15,7 +15,7 @@ export function Card({ card, onEdit }: CardProps) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({ id: card.id })
 
-  const moveCard = useCardStore((s) => s.moveCard)
+  const { moveCard } = useCards()
 
   const style = transform
     ? {

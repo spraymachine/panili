@@ -30,8 +30,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify Convex URL
+        env:
+          URL: ${{ secrets.VITE_CONVEX_URL }}
+        run: |
+          if [ -z "$URL" ]; then
+            echo "::error::VITE_CONVEX_URL secret is not set. Add it in repo Settings → Secrets → Actions"
+            exit 1
+          fi
+          echo "Convex URL is configured"
+
       - name: Build
         run: npm run build
+        env:
+          VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

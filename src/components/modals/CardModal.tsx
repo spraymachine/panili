@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { format } from 'date-fns'
 import type { Card as CardType, ColumnId } from '../../types'
-import { useCardStore } from '../../store/useCardStore'
+import { useCards } from '../../hooks/useCards'
 import { useUserStore } from '../../store/useUserStore'
 import { ConfirmModal } from './ConfirmModal'
 
@@ -17,9 +17,7 @@ export function CardModal(props: CardModalProps) {
   const column = props.mode === 'add' ? props.column : undefined
 
   const currentUser = useUserStore((s) => s.currentUser)
-  const addCard = useCardStore((s) => s.addCard)
-  const editCard = useCardStore((s) => s.editCard)
-  const deleteCard = useCardStore((s) => s.deleteCard)
+  const { addCard, editCard, deleteCard } = useCards()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')

@@ -5,7 +5,7 @@ import {
   useSensors,
 } from '@dnd-kit/core'
 import type { DragEndEvent } from '@dnd-kit/core'
-import { useCardStore } from '../../store/useCardStore'
+import { useCards } from '../../hooks/useCards'
 import { useUserStore } from '../../store/useUserStore'
 import type { ColumnId } from '../../types'
 import { COLUMN_ORDER } from '../../constants/users'
@@ -22,8 +22,7 @@ const COLUMN_CONFIG: Record<ColumnId, { title: string; emoji: string }> = {
 }
 
 export function Board() {
-  const cards = useCardStore((s) => s.cards)
-  const moveCard = useCardStore((s) => s.moveCard)
+  const { cards, isLoading, moveCard } = useCards()
   const currentUser = useUserStore((s) => s.currentUser)
   const [editingCard, setEditingCard] = useState<typeof cards[0] | null>(null)
   const [addCardColumn, setAddCardColumn] = useState<ColumnId | null>(null)
@@ -61,6 +60,16 @@ export function Board() {
       .sort((a, b) => a.order - b.order)
 
   if (!currentUser) return null
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[200px]">
+        <div className="animate-pulse text-plum-muted font-body">
+          Loading cards...
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
