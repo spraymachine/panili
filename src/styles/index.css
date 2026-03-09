@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #faf8ff;
+  --color-surface: #ffffff;
+  --color-primary: #c9b8e8;
+  --color-primary-dark: #9b8dc4;
+  --color-primary-light: #ede7f6;
+  --color-column-bg: #f3eef9;
+  --color-border: #ddd5f0;
+  --color-text: #3d2e5e;
+  --color-text-muted: #7b6e8f;
+  --color-mani: #5b9bd5;
+  --color-mani-tint: rgba(91, 155, 213, 0.08);
+  --color-pari: #6abf8e;
+  --color-pari-tint: rgba(106, 191, 142, 0.08);
+  --color-liki: #f5c842;
+  --color-liki-tint: rgba(245, 200, 66, 0.08);
+  --font-display: 'Pacifico', cursive;
+  --font-body: 'Nunito', sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  --shadow-card: 0 2px 8px rgba(155, 141, 196, 0.12);
+  --shadow-card-hover: 0 6px 20px rgba(155, 141, 196, 0.22);
+  --shadow-modal: 0 8px 40px rgba(155, 141, 196, 0.25);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
